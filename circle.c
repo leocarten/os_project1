@@ -26,7 +26,7 @@ int main(){
         printf("The child sees the radius of the circle is %d...\n", radius);
         sleep(1);
         float area = (radius*radius)*pi;
-        printf("The child calculates the area of this triangle and writes the result to a variable that the parent can also access...\n");
+        printf("The child calculates the area of this circle and writes the result to a variable that the parent can also access...\n");
         sleep(1);
         globalArea = area;
     }
