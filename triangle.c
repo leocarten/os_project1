@@ -6,7 +6,7 @@ int base = 3;
 int height = 4;
 float globalArea = 0;
 
-char buf[] = "Calculating the area of a triangle using parent and child processes\n";
+char buf[] = "Calculating the area of a triangle using parent and child processes.\n";
 int main(){
     pid_t pid;
     if (write(STDOUT_FILENO, buf, sizeof(buf)-1) != sizeof(buf)-1){
@@ -19,12 +19,13 @@ int main(){
     }
     else if (pid == 0) {
         // child
+        sleep(1);
         printf("The child is doing its work...\n");
         sleep(1);
         printf("The child sees the base of the triangle is %d, and the height is %d...\n", base, height);
         sleep(1);
         float area = (height*base)/2;
-        printf("The child calculates the area of this triangle is: %f\n", area);
+        printf("The child calculates the area of this triangle and writes the result to a variable that the parent can also access...\n");
         sleep(1);
         globalArea = area;
     }
@@ -33,7 +34,8 @@ int main(){
         if(wait(NULL)>0){
             printf("The child is done executing, this is the parent process speaking.\n");
             sleep(1);
-            printf("The area of the triangle is: %f\n",globalArea);
+            printf("The area of the triangle calculated by the child was: %f.\n",globalArea);
+            sleep(1);
         }
     }
     exit(0);
